@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Đặt phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<QLKS.Models.tblPhieuDatPhong>
+<header class="banner">
+    <img src="~/Content/Home/images/banner.png" width="100%" />
+
+</header>
+
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Phiếu đặt phòng</h3>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Result", "Home"))
+                    {
+                        @Html.AntiForgeryToken()
+                        if (ViewBag.ma_phong == null || ((String)ViewBag.ma_phong).Equals("[]"))
+                        {
+                            <div class="alert alert-warning" role="alert"></div>
+                        }
+                        else
+                        {
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group hidden">
+                                    @Html.Label("Username", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBox("ma_kh", (String)ViewBag.ma_kh, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ten_kh", (String)ViewBag.ten_kh, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Ngày đặt", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ngay_dat", (DateTime)ViewBag.ngay_dat, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Ngày vào", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ngay_vao", (String)ViewBag.ngay_vao, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Ngày ra", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ngay_ra", (String)ViewBag.ngay_ra, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden">
+                                    @Html.Label("Mã phòng", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ma_phong", (String)ViewBag.ma_phong, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Số phòng", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.TextBox("ten_phong", (String)ViewBag.so_phong, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <input type="submit" value="Đặt phòng" class="btn btn-success" />
+                                        <a href="@Url.Action("HuyPhieudatPhong", "Home")"><span class="btn btn-default">Hủy</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to Home", "Index")
+                    </div>
+                </div>
+            </div>
+
+        </div> 
+    </div>
+</div>
+
+
